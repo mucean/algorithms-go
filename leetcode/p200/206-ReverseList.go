@@ -1,6 +1,8 @@
 package p200
 
-import . "github.com/mucean/algorithms-go/leetcode/common"
+import (
+	. "github.com/mucean/algorithms-go/common"
+)
 
 var ReverseList = reverseList
 

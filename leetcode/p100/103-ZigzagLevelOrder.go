@@ -1,7 +1,7 @@
 package p100
 
 import (
-	. "github.com/mucean/algorithms-go/leetcode/common"
+	. "github.com/mucean/algorithms-go/common"
 )
 
 var ZigzagLevelOrder = zigzagLevelOrder

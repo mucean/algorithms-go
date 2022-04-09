@@ -1,10 +1,10 @@
 package p100_test
 
 import (
+	. "github.com/mucean/algorithms-go/common"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	. "github.com/mucean/algorithms-go/leetcode/common"
 	. "github.com/mucean/algorithms-go/leetcode/p100"
 )
 

@@ -35,3 +35,23 @@ func CreateTreeNode(nodes []int) *TreeNode {
 
 	return treeNodes[0]
 }
+
+func TreeLevelScan(head *TreeNode) []int {
+	nodes := make([]int, 0)
+	heap := []*TreeNode{head}
+
+	for l := len(heap); l > 0; l = len(heap) {
+		for i := 0; i < l; i++ {
+			nodes = append(nodes, heap[i].Val)
+			if heap[i].Left != nil {
+				heap = append(heap, heap[i].Left)
+			}
+			if heap[i].Right != nil {
+				heap = append(heap, heap[i].Right)
+			}
+		}
+		heap = heap[l:]
+	}
+
+	return nodes
+}
