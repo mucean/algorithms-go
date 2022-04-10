@@ -33,5 +33,20 @@ var _ = Describe("Array", func() {
 			Entry("not found: target > max", 19, false),
 			Entry("not found: target == middle", 5, false),
 		)
+
+		DescribeTable(
+			"08-Min",
+			func(nums []int, res int) {
+				Expect(MinArray(nums)).To(Equal(res))
+			},
+			Entry("normal", []int{5, 6, 7, 0, 1, 2, 3, 4}, 0),
+			Entry("normal", []int{5, 6, 7, 1, 2, 3, 4}, 1),
+			Entry("normal", []int{1, 1, 1, 1, 1, 1, 0, 1, 1}, 0),
+			Entry("normal", []int{1, 2, 3, 4, 5}, 1),
+			Entry("normal", []int{3, 4, 5, 6, 7, 2}, 2),
+			Entry("normal", []int{0, 1}, 0),
+			Entry("normal", []int{1, 0}, 0),
+			Entry("normal", []int{0}, 0),
+		)
 	})
 })
