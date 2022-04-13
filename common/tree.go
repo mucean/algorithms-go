@@ -21,14 +21,13 @@ func CreateTreeNode(nodes []int) *TreeNode {
 	left := true
 	for i := 1; i < l; i++ {
 		rootPos := (i - 1) / 2
-		if nodes[i] == NilTNode {
-			continue
-		}
-		treeNodes[i] = &TreeNode{Val: nodes[i]}
-		if left {
-			treeNodes[rootPos].Left = treeNodes[i]
-		} else {
-			treeNodes[rootPos].Right = treeNodes[i]
+		if nodes[i] != NilTNode {
+			treeNodes[i] = &TreeNode{Val: nodes[i]}
+			if left {
+				treeNodes[rootPos].Left = treeNodes[i]
+			} else {
+				treeNodes[rootPos].Right = treeNodes[i]
+			}
 		}
 		left = !left
 	}
@@ -38,6 +37,9 @@ func CreateTreeNode(nodes []int) *TreeNode {
 
 func TreeLevelScan(head *TreeNode) []int {
 	nodes := make([]int, 0)
+	if head == nil {
+		return nodes
+	}
 	heap := []*TreeNode{head}
 
 	for l := len(heap); l > 0; l = len(heap) {

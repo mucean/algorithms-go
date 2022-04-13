@@ -20,4 +20,18 @@ var _ = Describe("Num", func() {
 			Entry("4", 8, 21),
 		)
 	})
+
+	Context("11-MyPow", func() {
+		DescribeTable(
+			"MyPow",
+			func(x float64, exp int, ans float64) {
+				Expect(FloatEqual(MyPow(x, exp), ans)).To(Equal(true))
+			},
+			Entry("zero", float64(0), 1, float64(0)),
+			Entry("pow zero", float64(100), 0, float64(1)),
+			Entry("2 pow 10", float64(2), 10, float64(1024)),
+			Entry("2.1 pow 3", 2.1, 3, 9.26100),
+			Entry("2 pow -2", float64(2), -2, 0.2500),
+		)
+	})
 })
