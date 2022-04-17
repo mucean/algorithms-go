@@ -33,4 +33,16 @@ var _ = Describe("P50~P99", func() {
 			Entry("5", "intention", "execution", 5),
 		)
 	})
+
+	Context("P52-TotalNQueens", func() {
+		DescribeTable(
+			"TotalNQueens",
+			func(n, res int) {
+				Expect(TotalNQueens(n)).To(Equal(res))
+			},
+			Entry("1", 1, 1),
+			Entry("4", 4, 2),
+			Entry("8", 8, 92),
+		)
+	})
 })

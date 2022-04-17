@@ -64,4 +64,48 @@ var _ = Describe("P1-50", func() {
 			Entry("node length % k == 1", []int{1, 2, 3, 4, 5}, 2, []int{2, 1, 4, 3, 5}),
 		)
 	})
+
+	Context("P31-NextPermutation", func() {
+		DescribeTable(
+			"NextPermutation",
+			func(nums, res []int) {
+				NextPermutation(nums)
+				Expect(nums).To(Equal(res))
+			},
+			Entry("zero element", []int{}, []int{}),
+			Entry("one element", []int{1}, []int{1}),
+			Entry("two element", []int{1, 2}, []int{2, 1}),
+			Entry("two element", []int{2, 1}, []int{1, 2}),
+			Entry("three element", []int{1, 2, 3}, []int{1, 3, 2}),
+			Entry("three element", []int{1, 3, 2}, []int{2, 1, 3}),
+			Entry("three element", []int{3, 2, 1}, []int{1, 2, 3}),
+			Entry("three element", []int{2, 3, 1}, []int{3, 1, 2}),
+			Entry("five elements", []int{1, 0, 0, 1, 1}, []int{1, 0, 1, 0, 1}),
+			Entry("six elements", []int{1, 0, 0, 4, 3, 2}, []int{1, 0, 2, 0, 3, 4}),
+			Entry("two elements", []int{1, 1}, []int{1, 1}),
+			Entry("more elements", []int{1, 0, 2, 8, 4, 3, 2, 0}, []int{1, 0, 3, 0, 2, 2, 4, 8}),
+		)
+	})
+
+	Context("P46-Permute", func() {
+		DescribeTable(
+			"Permute",
+			func(nums []int, res [][]int) {
+				Expect(Permute(nums)).To(Equal(res))
+			},
+			Entry("1, 2, 3", []int{1, 2, 3}, [][]int{{1, 2, 3}, {1, 3, 2}, {2, 1, 3}, {2, 3, 1}, {3, 2, 1}, {3, 1, 2}}),
+		)
+	})
+
+	Context("P47-PermuteUnique", func() {
+		DescribeTable(
+			"PermuteUnique",
+			func(nums []int, res [][]int) {
+				Expect(PermuteUnique(nums)).To(Equal(res))
+			},
+			Entry("1, 1", []int{1, 1}, [][]int{{1, 1}}),
+			Entry("1, 1, 1", []int{1, 1, 1}, [][]int{{1, 1, 1}}),
+			Entry("1, 3, 1", []int{1, 3, 1}, [][]int{{1, 1, 3}, {1, 3, 1}, {3, 1, 1}}),
+		)
+	})
 })
