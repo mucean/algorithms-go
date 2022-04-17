@@ -57,3 +57,157 @@ func TreeLevelScan(head *TreeNode) []int {
 
 	return nodes
 }
+
+func DoPostorderOther(root *TreeNode) []int {
+	nodes := make([]int, 0)
+	if root == nil {
+		return nodes
+	}
+	stack := make([]*TreeNode, 0)
+	for root != nil || len(stack) > 0 {
+		if root != nil {
+			stack = append(stack, root)
+			root = root.Left
+			continue
+		}
+
+		l := len(stack) - 1
+		for l >= 0 && (stack[l].Right == nil || stack[l].Right == root) {
+			root = stack[l]
+			nodes = append(nodes, root.Val)
+			stack = stack[:l]
+			l--
+		}
+		if l >= 0 {
+			root = stack[l].Right
+		} else {
+			root = nil
+		}
+	}
+
+	return nodes
+}
+
+func DoPostorder(root *TreeNode) []int {
+	nodes := make([]int, 0)
+	if root == nil {
+		return nodes
+	}
+	stack := make([]*TreeNode, 0)
+	for root != nil {
+		if root.Left != nil {
+			stack = append(stack, root)
+			root = root.Left
+			continue
+		}
+		if root.Right != nil {
+			stack = append(stack, root)
+			root = root.Right
+			continue
+		}
+		nodes = append(nodes, root.Val)
+		for {
+			l := len(stack)
+			if l == 0 {
+				root = nil
+				break
+			}
+			if stack[l-1].Right != root && stack[l-1].Right != nil {
+				root = stack[l-1].Right
+				break
+			}
+			root = stack[l-1]
+			stack = stack[:l-1]
+			nodes = append(nodes, root.Val)
+		}
+	}
+
+	return nodes
+}
+
+func DoPostorderRecursive(root *TreeNode) []int {
+	nodes := make([]int, 0)
+	var recursive func(root *TreeNode)
+	recursive = func(root *TreeNode) {
+		if root == nil {
+			return
+		}
+		recursive(root.Left)
+		recursive(root.Right)
+		nodes = append(nodes, root.Val)
+	}
+
+	recursive(root)
+
+	return nodes
+}
+
+func DoInorderRecursive(root *TreeNode) []int {
+	var recursive func(root *TreeNode, nodes []int) []int
+
+	recursive = func(root *TreeNode, nodes []int) []int {
+		if root == nil {
+			return nodes
+		}
+		nodes = append(recursive(root.Left, nodes), root.Val)
+		return recursive(root.Right, nodes)
+	}
+
+	return recursive(root, []int{})
+}
+
+func DoInorder(root *TreeNode) []int {
+	nodes := make([]int, 0)
+	if root == nil {
+		return nodes
+	}
+
+	stack := make([]*TreeNode, 0)
+	for root != nil || len(stack) > 0 {
+		if root != nil {
+			stack = append(stack, root)
+			root = root.Left
+			continue
+		}
+
+		root = stack[len(stack)-1]
+		nodes = append(nodes, root.Val)
+		root = root.Right
+		stack = stack[:len(stack)-1]
+	}
+
+	return nodes
+}
+
+func DoPreorderRecursive(root *TreeNode) []int {
+	var recursive func(root *TreeNode, nodes []int) []int
+
+	recursive = func(root *TreeNode, nodes []int) []int {
+		if root == nil {
+			return nodes
+		}
+		nodes = append(nodes, root.Val)
+		nodes = recursive(root.Left, nodes)
+		return recursive(root.Right, nodes)
+	}
+
+	return recursive(root, []int{})
+}
+
+func DoPreorder(root *TreeNode) []int {
+	stack := make([]*TreeNode, 0)
+
+	nodes := make([]int, 0)
+	for root != nil || len(stack) > 0 {
+		if root != nil {
+			nodes = append(nodes, root.Val)
+			stack = append(stack, root)
+			root = root.Left
+			continue
+		}
+		root = stack[len(stack)-1].Right
+		stack = stack[:len(stack)-1]
+	}
+
+	return nodes
+}

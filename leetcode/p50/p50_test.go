@@ -22,4 +22,15 @@ var _ = Describe("P50~P99", func() {
 			Entry("normal", []int{4, 5, 6, 0, 0, 0}, 3, []int{1, 2, 3}, 3, []int{1, 2, 3, 4, 5, 6}),
 		)
 	})
+
+	Context("P88-MinDistance", func() {
+		DescribeTable(
+			"min operation by convert one word to other word",
+			func(word1, word2 string, res int) {
+				Expect(MinDistance(word1, word2)).To(Equal(res))
+			},
+			Entry("3", "horse", "ros", 3),
+			Entry("5", "intention", "execution", 5),
+		)
+	})
 })

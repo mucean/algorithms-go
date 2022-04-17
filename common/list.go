@@ -16,3 +16,9 @@ type ListNode struct {
 	Val  int
 	Next *ListNode
 }
+
+type ComplexListNode struct {
+	Val    int
+	Next   *ComplexListNode
+	Random *ComplexListNode
+}

@@ -63,4 +63,31 @@ var _ = Describe("Tree", func() {
 			Entry("normal", []int{1, 2, 3, 4, NilTNode, 5, 6, 7, 8}, []int{1, 2, 3, 4, 5, 6, 7, 8}),
 		)
 	})
+
+	Context("24-VerifyPostorder", func() {
+		DescribeTable(
+			"VerifyPostorder",
+			func(postorder []int, res bool) {
+				Expect(VerifyPostorder(postorder)).To(Equal(res))
+			},
+			Entry("nil", []int(nil), true),
+			Entry("one node", []int{1}, true),
+			Entry("normal", []int{5, 7, 6, 9, 11, 10, 8}, true),
+			Entry("normal", []int{7, 4, 6, 5}, false),
+		)
+	})
+
+	Context("25-PathSum", func() {
+		DescribeTable(
+			"PathSum",
+			func(nodes []int, target int, res [][]int) {
+				Expect(PathSum(CreateTreeNode(nodes), target)).To(Equal(res))
+			},
+			Entry("root is nil", []int(nil), 2, [][]int{}),
+			Entry("one node == target", []int{1}, 1, [][]int{{1}}),
+			Entry("one node != target", []int{1}, 2, [][]int{}),
+			Entry("normal", []int{1, 2, 3}, 5, [][]int{}),
+			Entry("two path", []int{5, 4, 8, 11, NilTNode, 13, 4, 7, 2, NilTNode, NilTNode, NilTNode, NilTNode, 5, 1}, 22, [][]int{{5, 4, 11, 2}, {5, 8, 4, 5}}),
+		)
+	})
 })
